@@ -2,7 +2,9 @@ import express from "express";
 import { connect } from "mongoose";
 import { config } from "dotenv";
 import AuthRoutes from "./Routes/Auth.routes";
+import VideoRoutes from "./Routes/Video.routes";
 import cors from "cors";
+
 config();
 
 const server = express();
@@ -18,9 +20,10 @@ connect(mongoURI, (error) => {
   }
   console.log(`Connection to MongoDB was successful`);
 });
-server.use(AuthRoutes);
 
 //==============================Server Endpoints===============================
+server.use(AuthRoutes);
+server.use(VideoRoutes);
 
 const PORT = process.env.PORT ?? 5000;
 
